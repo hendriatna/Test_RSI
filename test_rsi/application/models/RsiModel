@@ -1,0 +1,96 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class RsiModel extends CI_Model{
+
+	private $_table = "tbl_rsi";
+
+	private $id;
+	private $username;
+	private $password;
+
+	public function rules()
+    {
+        return [
+            ['field' => 'username',
+            'label' => 'Username',
+            'rules' => 'required'],
+            // matches[password]'
+            ['field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required']
+        ];
+    }
+
+	// public function getAll()
+    // {
+    //     return $this->db->get($this->_table)->result();
+    // }
+
+
+    public function checkUser()
+    {
+        $post = $this->input->post();
+        $data = array(
+            'username' => $post["username"],
+            'password' => $post["password"]);
+
+            return $this->db->get_where($this->_table, $data)->row();
+    }
+
+    // public function getById($id)
+    // {
+    //     return $this->db->get_where($this->_table, ["id" => $id])->row();
+    // }
+
+	// public function save()
+    // {
+    //     $post = $this->input->post();
+    //     $data = array(
+    //         'nama' => $post["nama"],
+    //         'nama_alias' => $post["nama_alias"],
+    //         'tgl_lahir' => $post["tgl_lahir"],
+    //         'jenis_kelamin' => $post["jenis_kelamin"],
+    //         'alamat' => $post["alamat"],
+    //         'email' => $post["email"],
+    //         'telepon' => $post["telepon"]
+    // );
+    //     return $this->db->insert($this->_table, $data);
+    // }
+
+	// public function update()
+    // {
+    //     $post = $this->input->post();
+    //     $data = array(
+    //         'nama' => $post["nama"],
+    //         'nama_alias' => $post["nama_alias"],
+    //         'tgl_lahir' => $post["tgl_lahir"],
+    //         'jenis_kelamin' => $post["jenis_kelamin"],
+    //         'alamat' => $post["alamat"],
+    //         'email' => $post["email"],
+    //         'telepon' => $post["telepon"]
+    // );
+    //     return $this->db->update($this->_table, $data, array('id' => $post["id"]));
+    // }
+
+    // public function delete($id)
+    // {
+    //     return $this->db->delete($this->_table, array("id" => $id));
+    // }
+
+	// function getEmployee(){
+	// 	$sql = "SELECT 
+	// 				id,
+	// 				nama,
+	// 				nama_alias,
+	// 				DATE_FORMAT(tgl_lahir, '%d %M %Y') as tgl_lahir,
+	// 				jenis_kelamin,
+	// 				alamat,
+	// 				email,
+	// 				telepon
+	// 			FROM tbl_employee
+	// 			order by id asc";
+	// 	$query = $this->db->query($sql);
+    //     $result = $query->result_array();    
+    //     return $result;
+	// }
+}?>
